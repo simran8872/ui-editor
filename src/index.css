@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/* ===== Pretty range with progress & bubble ===== */
+.pretty-range {
+  --fill: #6366f1;
+  --track: #e5e7eb;
+  --thumb: #111827;
+  --percent: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 9999px;
+  background:
+    linear-gradient(to right,
+      var(--fill) 0%,
+      var(--fill) var(--percent),
+      var(--track) var(--percent),
+      var(--track) 100%);
+  outline: none;
+}
+.pretty-range:focus-visible {
+  box-shadow: 0 0 0 4px rgba(99,102,241,.25);
+}
+
+/* WebKit thumb (Chrome, Edge, Safari) */
+.pretty-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--thumb);
+  border: 2px solid #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25),
+              0 0 0 6px color-mix(in oklab, var(--fill) 25%, transparent);
+  cursor: pointer;
+  transition: transform .12s ease;
+}
+.pretty-range::-webkit-slider-thumb:hover { transform: scale(1.06); }
+
+/* Firefox */
+.pretty-range::-moz-range-track {
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--track);
+}
+.pretty-range::-moz-range-progress {
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--fill);
+}
+.pretty-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--thumb);
+  border: 2px solid #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25),
+              0 0 0 6px color-mix(in oklab, var(--fill) 25%, transparent);
+  cursor: pointer;
+  transition: transform .12s ease;
+}
+.pretty-range::-moz-range-thumb:hover { transform: scale(1.06); }
+
+/* Value bubble above the thumb */
+.range-bubble {
+  position: absolute;
+  top: -28px;
+  transform: translateX(-50%);
+  padding: 2px 6px;
+  font-size: 10px;
+  line-height: 1;
+  color: #fff;
+  background: #111827;
+  border-radius: 6px;
+}
+.range-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #111827;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}

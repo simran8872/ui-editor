@@ -1,0 +1,1 @@
+Run: npm install && npm run dev\nBuild: npm run build\n
