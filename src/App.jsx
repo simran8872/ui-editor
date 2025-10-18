@@ -398,6 +398,24 @@ export default function App() {
     ))}
   </div>
 </Field>
+{/* Layout Selector */}
+<Field label="Layout">
+  <div className="flex gap-2">
+    {["A", "B"].map(l => (
+      <button
+        key={l}
+        className={`px-3 py-2 rounded-lg border text-sm font-medium ${
+          cfg.currentLayout === l
+            ? "bg-white/80 text-gray-800 shadow"
+            : "bg-white/50 text-gray-600"
+        }`}
+        onClick={() => update("currentLayout", l)}
+      >
+        Layout {l}
+      </button>
+    ))}
+  </div>
+</Field>
 
 
           <Section title="Typography">
